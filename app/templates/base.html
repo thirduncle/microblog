@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    {% if title %}
+    <title>{{ title }} - Microblog</title>
+    {% else %}
+    <title>Welcome to Microblog!</title>
+    {% endif %}
+</head>
+<body>
+    <div>Microblog:
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('login') }}">Login</a>
+    </div>
+    <hr> <!--Horizontal Rule to insert "thematic" break - in reality adds a horizontal line-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul> <!--Unordered list-->
+            {% for message in messages %}
+        <li>{{ message }}</li> <!--List Item-->
+        {% endfor %}
+    </ul>
+    {% endif %}
+        {% endwith %}
+{% block content %}{% endblock %}
+</body>
+</html>
